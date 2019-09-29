@@ -34,7 +34,7 @@ use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Files\Listener\LegacyLoadAdditionalScriptsAdapter;
 use OCP\AppFramework\App;
 use \OCA\Files\Service\TagService;
-use OCP\Collaboration\Resources\IManager;
+use OCP\Collaboration\Resources\IProviderManager;
 use OCP\EventDispatcher\IEventDispatcher;
 use \OCP\IContainer;
 use OCA\Files\Controller\ViewController;
@@ -84,9 +84,9 @@ class Application extends App {
 		/**
 		 * Register Collaboration ResourceProvider
 		 */
-		/** @var IManager $resourceManager */
-		$resourceManager = $container->query(IManager::class);
-		$resourceManager->registerResourceProvider(ResourceProvider::class);
+		/** @var IProviderManager $providerManager */
+		$providerManager = $container->query(IProviderManager::class);
+		$providerManager->registerResourceProvider(ResourceProvider::class);
 		Listener::register($server->getEventDispatcher());
 
 		/** @var IEventDispatcher $dispatcher */
