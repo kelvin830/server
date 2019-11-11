@@ -93,6 +93,7 @@ steps:
   image: docker:git
   commands:
     - git submodule update --init
+- name: syntax-php7.2
   image: nextcloudci/php7.2:php7.2-12
   commands:
     - composer install
