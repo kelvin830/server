@@ -561,40 +561,6 @@ steps:
     - NOCOVERAGE=true TEST_SELECTION=DB ./autotest.sh mysql
 
 services:
-- name: cache
-  image: redis
-- name: mysql
-  image: mysql:5.7
-  environment:
-    MYSQL_ROOT_PASSWORD: owncloud
-    MYSQL_USER: oc_autotest
-    MYSQL_PASSWORD: owncloud
-    MYSQL_DATABASE: oc_autotest
-  tmpfs:
-    - /var/lib/mysql
-
-trigger:
-  branch:
-    - master
-    - stable*
-  event:
-    - push
-
----
-kind: pipeline
-name: mysql5.7-php7.2
-
-steps:
-- name: submodules
-  image: docker:git
-  commands:
-    - git submodule update --init
-- name: mysql-php7.2
-  image: nextcloudci/php7.2:php7.2-12
-  commands:
-    - NOCOVERAGE=true TEST_SELECTION=DB ./autotest.sh mysql
-
-services:
 - name: mysql
   image: mysql:5.7
   environment:
